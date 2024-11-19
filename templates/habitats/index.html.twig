@@ -14,11 +14,14 @@
     gap: 20px; 
 } 
 .habitat { 
-    border: 1px solid #ccc; 
-    padding: 20px; 
-    border-radius: 10px; 
-    background-color: #f9f9f9; 
-    transition: all 0.3s ease;
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin: 10px; 
+    padding: 10px; 
+    text-align: center; 
+    cursor: pointer; 
 } 
 .habitat h2 { 
     font-size: 1.5em; 
@@ -38,10 +41,54 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 } 
 .habitat img { 
-    max-width: 100%; 
+    width: 100%; 
     height: auto; 
-    margin-bottom: 10px; 
-    border-radius: 10px;
+    border-bottom: 1px solid #ddd; 
+} 
+.animal-list { 
+    display: none; 
+    list-style: none; 
+    padding: 0; 
+    margin: 10px 0 0 0; 
+} 
+.habitat.expanded .animal-list { 
+    display: block; 
+} 
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+.card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+.card-title {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+.animal-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+.animal-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.animal-details {
+    text-align: left;
 }
 </style>
 
@@ -56,6 +103,20 @@
         </div> 
         {% endif %}
         <p>{{ habitat.description }}</p> 
+        <ul class="animal-list">
+            {% for animal in habitat.animaux %}
+            <li class="animal-item">
+                {% if animal.image %}
+                <img src="{{ asset('/images/' ~ animal.image) }}" alt="{{ animal.prenom }}">
+                {% endif %}
+                <div class="animal-details">
+                    <strong>{{ animal.prenom }}</strong><br>
+                    Race: {{ animal.race }}<br>
+                    État: {{ animal.etat }}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
     </div> 
 {% endfor %} 
 </div>
