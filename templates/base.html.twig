@@ -15,27 +15,47 @@
             margin: 0;
             padding: 0;
         }
-        .header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 10px 20px; 
-            background-color: #006400; 
-            color: #fff;
-        }
-        .navbar, .footer {
-            background-color: #006400;
-            padding: 1em;
-            color: white;
-            text-align: center;
-        }
-        .logo h1 { margin: 0; } 
-        .logo a { color: #fff; text-decoration: none; } 
-        .navigation, .footer-navigation { margin-left: auto; } 
-        .navigation ul, .footer-navigation ul { list-style: none; display: flex; margin: 0; padding: 0; } 
-        .navigation ul li, .footer-navigation ul li { margin-left: 20px; }
-        .navigation ul li a, .footer-navigation ul li a { color: #fff; text-decoration: none; } 
-        .navigation ul li a:hover, .footer-navigation ul li a:hover { text-decoration: underline; }
+        .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #006400;
+        padding: 1em;
+        color: white;
+    }
+    .logo {
+        margin: 0;
+    }
+    .logo a {
+        color: #fff;
+        text-decoration: none;
+    }
+    .navigation {
+        margin-left: auto;
+    }
+    .navigation ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+    .navigation ul li {
+        margin-left: 20px;
+    }
+    .navigation ul li a {
+        color: #fff;
+        text-decoration: none; /* Supprime le soulignement */
+        opacity: 0.7; /* Légèrement transparent */
+        transition: opacity 0.3s;
+    }
+    .navigation ul li a:hover {
+        text-decoration: none; /* Supprime le soulignement au survol */
+        opacity: 1; /* Pleine opacité au survol */
+    }
+    .navigation ul li a.active {
+        text-decoration: none; /* Supprime le soulignement pour l'onglet actif */
+        opacity: 1; /* Pleine opacité pour l'onglet en cours */
+    }
         .footer {
             display: flex;
             justify-content: space-around;
@@ -56,21 +76,21 @@
     <body>
 
     <!-- Header -->
-    <header class="header">
+  <header class="header">
     <div class="navbar"> 
-    <div class="logo"> 
-        <h1><a href="{{ path('home') }}">Arcadia</a></h1> 
-    </div> 
-    <nav class="navigation"> 
-    <ul> 
-        <li><a href="{{ path('services') }}">Services</a></li> 
-        <li><a href="{{ path('habitats') }}">Habitats</a></li> 
-        <li><a href="{{ path('login') }}">Connexion</a></li> 
-        <li><a href="{{ path('contact') }}">Contact</a></li> 
-    </ul> 
-    </nav> 
+        <div class="logo"> 
+            <h1><a href="{{ path('home') }}">Arcadia</a></h1> 
+        </div> 
+        <nav class="navigation"> 
+            <ul> 
+                <li><a href="{{ path('services') }}" class="{{ app.request.attributes.get('_route') == 'services' ? 'active' : '' }}">Services</a></li> 
+                <li><a href="{{ path('habitats') }}" class="{{ app.request.attributes.get('_route') == 'habitats' ? 'active' : '' }}">Habitats</a></li> 
+                <li><a href="{{ path('login') }}" class="{{ app.request.attributes.get('_route') == 'login' ? 'active' : '' }}">Connexion</a></li> 
+                <li><a href="{{ path('contact') }}" class="{{ app.request.attributes.get('_route') == 'contact' ? 'active' : '' }}">Contact</a></li> 
+            </ul> 
+        </nav> 
     </div>
-    </header>
+</header>
         
         {% block body %}{% endblock %}
 
