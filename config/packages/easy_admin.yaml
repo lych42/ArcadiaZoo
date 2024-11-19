@@ -1,0 +1,10 @@
+# config/packages/easy_admin.yaml
+easy_admin:
+    design:
+        brand_color: '#1e88e5'
+        logo: 'favicon.ico'
+    entities:
+        Animal:
+            class: App\Entity\Animal
+            controller: App\Controller\Admin\AnimalCrudController
+

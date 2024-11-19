@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Habitats{% endblock %}
+
+{% block body %}
+<style>
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.habitats { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; 
+} 
+.habitat { 
+    border: 1px solid #ccc; 
+    padding: 20px; 
+    border-radius: 10px; 
+    background-color: #f9f9f9; 
+    transition: all 0.3s ease;
+} 
+.habitat h2 { 
+    font-size: 1.5em; 
+    color: #333; 
+    cursor: pointer; 
+} 
+.habitat p { 
+    font-size: 1em; 
+    color: #666; 
+    display: none; 
+} 
+.habitat.expanded p { 
+    display: block; 
+} 
+.habitat:hover { 
+    border-color: #333; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+} 
+.habitat img { 
+    max-width: 100%; 
+    height: auto; 
+    margin-bottom: 10px; 
+    border-radius: 10px;
+}
+</style>
+
+<h1 class="title">Habitats du Zoo</h1> 
+<div class="habitats"> 
+{% for habitat in habitats %} 
+    <div class="habitat" onclick="toggleDescription(this)"> 
+        <h2>{{ habitat.nom }}</h2> 
+        {% if habitat.image %} 
+        <div class="habitat-image"> 
+            <img src="{{ asset('/images/' ~ habitat.image) }}" alt="{{ habitat.nom }}">
+        </div> 
+        {% endif %}
+        <p>{{ habitat.description }}</p> 
+    </div> 
+{% endfor %} 
+</div>
+
+<script>
+function toggleDescription(element) {
+    if (element.classList.contains('expanded')) {
+        element.classList.remove('expanded');
+    } else {
+        // Fermer toutes les autres descriptions ouvertes
+        var habitats = document.querySelectorAll('.habitat');
+        habitats.forEach(function(habitat) {
+            habitat.classList.remove('expanded');
+        });
+
+        // Ouvrir la description de l'élément cliqué
+        element.classList.add('expanded');
+    }
+}
+</script>
+{% endblock %}
+

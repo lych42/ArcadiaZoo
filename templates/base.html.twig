@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="style.css">
+        {% block stylesheets %}{% endblock %}
+
+        {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+        <style>
+        body {
+            font-family:  Georgia, serif;;
+            margin: 0;
+            padding: 0;
+        }
+        .header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 10px 20px; 
+            background-color: #006400; 
+            color: #fff 
+        }
+        .navbar {
+            background-color: #006400;
+            padding: 1em;
+            color: white;
+            text-align: center;
+        }
+        .logo h1 { margin: 0; } 
+        .logo a { color: #fff; text-decoration: none; } 
+        .navigation { margin-left: auto;  } 
+        .navigation ul { list-style: none; display: flex; margin: 0; padding: 0; } 
+        .navigation ul li { margin-left: 20px; }
+         .navigation ul li a { color: #fff; text-decoration: none; } .navigation ul li a:hover { text-decoration: underline; }
+
+        .footer {
+            background-color: #006400;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+        </style>
+    </head>
+    <body>
+
+    <!-- Header -->
+    <header class="header">
+    <div class="navbar"> 
+    <div class="logo"> 
+        <h1><a href="{{ path('home') }}">Arcadia</a></h1> 
+    </div> 
+    <nav class="navigation"> 
+    <ul> 
+        <li><a href="{{ path('services') }}">Services</a></li> 
+        <li><a href="{{ path('habitats') }}">Habitats</a></li> 
+        <li>Connexion</a></li> 
+        <li>Contact</a></li> 
+    </ul> 
+    </nav> 
+    </div>
+    </header>
+        
+        {% block body %}{% endblock %}
+
+
+    <!-- Footer -->
+    <footer class="footer"> 
+    <div class="footer-column"> 
+    <h4>Horaires</h4> 
+    <p>Lundi - Vendredi: 9h - 18h</p> 
+    <p>Samedi: 10h - 17h</p> 
+    <p>Dimanche: Fermé</p> 
+    </div> 
+    <div class="footer-column"> 
+    <h4>Habitats</h4> 
+    <ul> 
+        <li><a href="{{ path('habitats') }}">Tous les Habitats</a>
+        </li> <!-- Ajouter d'autres liens si nécessaire --> 
+    </ul> 
+    </div> 
+    <div class="footer-column"> 
+    <h4>Services</h4> 
+    <ul> 
+        <li><a href="{{ path('services') }}">Nos Services</a>
+        </li> <!-- Ajouter d'autres liens si nécessaire --> 
+    </ul> 
+    </div> 
+    </body>
+</html>
