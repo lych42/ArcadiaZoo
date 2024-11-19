@@ -44,7 +44,7 @@ mounts:
   "/var": { source: local, source_path: var }
 
 relationships:
-  database: "db:mysql"
+  database: "database:mysql"
 
 hooks:
   build: |
