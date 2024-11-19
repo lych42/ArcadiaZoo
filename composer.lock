@@ -519,7 +519,7 @@
     },
     {
       "name": "doctrine/doctrine-migrations-bundle",
-      "version": "3.3.1",
+      "version": "3.3.",
       "source": {
         "type": "git",
         "url": "https://github.com/doctrine/DoctrineMigrationsBundle.git",
