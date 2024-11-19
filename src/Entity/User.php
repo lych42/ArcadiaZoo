@@ -15,7 +15,7 @@ class User implements UserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 180, unique: true)]
     private ?string $username = null;
 
     /**
@@ -23,6 +23,9 @@ class User implements UserInterface
      */
     #[ORM\Column]
     private array $roles = [];
+
+    #[ORM\Column]
+    private ?string $password = null;
 
     public function getId(): ?int
     {
@@ -73,6 +76,23 @@ class User implements UserInterface
         $this->roles = $roles;
 
         return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): static
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function getSalt(): ?string
+    {
+        return null;
     }
 
     /**
