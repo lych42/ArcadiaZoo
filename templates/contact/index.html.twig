@@ -2,20 +2,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h1>Contactez-nous</h1>
-<form action="{{ path('contact') }}" method="post">
-    <div>
-        <label for="name">Nom :</label>
-        <input type="text" id="name" name="name">
-    </div>
-    <div>
-        <label for="email">Email :</label>
-        <input type="email" id="email" name="email">
-    </div>
-    <div>
-        <label for="message">Message :</label>
-        <textarea id="message" name="message"></textarea>
-    </div>
-    <button type="submit">Envoyer</button>
-</form>
+    <h1>Contactez-nous</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {{ form_start(form) }}
+        {{ form_row(form.titre) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.email) }}
+        <button type="submit">Envoyer</button>
+    {{ form_end(form) }}
 {% endblock %}
