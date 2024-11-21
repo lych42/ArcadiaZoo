@@ -19,33 +19,25 @@ Arcadia Zoo est une application Symfony pour gérer les informations sur les ani
 
 2. Installez les dépendances :
 
-Configurez votre base de données dans le fichier .env :
+   ```sh
+   composer install
 
-Créez la base de données et exécutez les migrations :
+3. Configurez votre base de données dans le fichier .env :
 
-Démarrez le serveur de développement :
+   ```sh
+                     DATABASE_URL="mysql://admin:masterOfZoo@127.0.0.1:3306/sf_arcadia?serverVersion=10.4.32-MariaDB&charset=utf8mb4"
+   
 
-ou
+4. Créez la base de données et exécutez les migrations :
 
-Utilisation
+    ```sh
+    php bin/console doctrine:database:create
+    php bin/console doctrine:migrations:migrate
+
+5. Démarrez le serveur de développement :
+
+   ```sh
+   symfony server:start
+
+## Utilisation
 Accédez à l'application dans votre navigateur à l'adresse http://localhost:8000.
-
-Entités
-Animal
-id: Identifiant unique
-prenom: Prénom de l'animal
-etat: État de l'animal
-image: Image de l'animal (optionnel)
-habitat: Habitat de l'animal
-race: Race de l'animal
-Habitat
-id: Identifiant unique
-name: Nom de l'habitat
-Race
-id: Identifiant unique
-name: Nom de la race
-Contribuer
-Les contributions sont les bienvenues ! Veuillez soumettre une pull request ou ouvrir une issue pour discuter des changements que vous souhaitez apporter.
-
-Licence
-Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
